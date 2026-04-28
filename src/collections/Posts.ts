@@ -10,7 +10,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: false,
+      required: true,
     },
     // Основной текст поста теперь будет виден СРАЗУ
     {
@@ -29,7 +29,7 @@ export const Posts: CollectionConfig = {
       name: 'mainImage',
       type: 'upload',
       relationTo: 'media' as any, // Исправлено: добавлено 'as any'
-      required: true,
+      required: false,
       admin: { position: 'sidebar' },
     },
     {
