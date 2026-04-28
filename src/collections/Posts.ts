@@ -10,7 +10,7 @@ export const Posts: CollectionConfig = {
     {
       name: 'title',
       type: 'text',
-      required: true,
+      required: false,
     },
     // Основной текст поста теперь будет виден СРАЗУ
     {
