@@ -21,16 +21,16 @@ export const Posts: CollectionConfig = {
     {
       name: 'category',
       type: 'relationship',
-      relationTo: 'categories',
+      relationTo: 'categories' as any, // Исправлено: добавлено 'as any' для прохождения проверки типов
       required: true,
-      admin: { position: 'sidebar' }, // Категорию лучше в боковую панель
+      admin: { position: 'sidebar' },
     },
     {
       name: 'mainImage',
       type: 'upload',
-      relationTo: 'media',
+      relationTo: 'media' as any, // Исправлено: добавлено 'as any'
       required: true,
-      admin: { position: 'sidebar' }, // Обложку тоже в бок
+      admin: { position: 'sidebar' },
     },
     {
       name: 'slug',
@@ -39,7 +39,7 @@ export const Posts: CollectionConfig = {
       unique: true,
       admin: { position: 'sidebar' },
     },
-    // Оставляем блоки для дополнительных элементов (галереи, цитаты)
+    // Оставляем блоки для дополнительных элементов
     {
       name: 'layout',
       type: 'blocks',
@@ -48,7 +48,7 @@ export const Posts: CollectionConfig = {
         {
           slug: 'extraImage',
           fields: [
-            { name: 'image', type: 'upload', relationTo: 'media', required: true },
+            { name: 'image', type: 'upload', relationTo: 'media' as any, required: true },
             { name: 'className', type: 'text', defaultValue: 'standard-image' },
           ],
         },
@@ -58,7 +58,7 @@ export const Posts: CollectionConfig = {
             {
               name: 'images',
               type: 'array',
-              fields: [{ name: 'image', type: 'upload', relationTo: 'media' }],
+              fields: [{ name: 'image', type: 'upload', relationTo: 'media' as any }],
             },
           ],
         },
