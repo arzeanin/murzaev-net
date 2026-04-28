@@ -4,7 +4,7 @@ export const Posts: CollectionConfig = {
   slug: 'posts',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'slug', 'category'], // Чтобы в списке постов было видно слаг
+    defaultColumns: ['title', 'slug', 'category'],
   },
   fields: [
     {
@@ -12,37 +12,39 @@ export const Posts: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    // --- ДОБАВЛЯЕМ СЮДА SLUG ---
+    // Основной текст поста теперь будет виден СРАЗУ
     {
-      name: 'slug',
-      type: 'text',
-      required: true,
-      unique: true, // Сделаем его уникальным, чтобы не было двух постов с одним адресом
-      admin: {
-        position: 'sidebar', // Улетает в правую колонку в админке
-      },
+      name: 'content',
+      type: 'richText',
+      label: 'Основной текст поста',
     },
-    // ---------------------------
     {
       name: 'category',
       type: 'relationship',
       relationTo: 'categories',
       required: true,
+      admin: { position: 'sidebar' }, // Категорию лучше в боковую панель
     },
     {
       name: 'mainImage',
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: { position: 'sidebar' }, // Обложку тоже в бок
     },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      unique: true,
+      admin: { position: 'sidebar' },
+    },
+    // Оставляем блоки для дополнительных элементов (галереи, цитаты)
     {
       name: 'layout',
       type: 'blocks',
+      label: 'Дополнительные блоки (галереи, цитаты и т.д.)',
       blocks: [
-        {
-          slug: 'content',
-          fields: [{ name: 'text', type: 'richText' }],
-        },
         {
           slug: 'extraImage',
           fields: [
@@ -65,7 +67,6 @@ export const Posts: CollectionConfig = {
           fields: [
             { name: 'text', type: 'textarea', required: true },
             { name: 'author', type: 'text' },
-            { name: 'className', type: 'text', defaultValue: 'modern-quote' },
           ],
         },
       ],
